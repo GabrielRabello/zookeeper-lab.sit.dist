@@ -6,6 +6,8 @@ import java.nio.ByteBuffer;
 import java.util.List;
 import java.util.Random;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
@@ -13,8 +15,6 @@ import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.data.Stat;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static java.lang.Integer.valueOf;
 
@@ -34,7 +34,7 @@ public class SyncPrimitive implements Watcher {
 //                mutex = -1;
                 System.out.println("Finished starting ZK: " + zk);
             } catch (IOException e) {
-                System.out.println(e.toString());
+                log.error(e.toString());
                 zk = null;
             }
         }
@@ -43,7 +43,10 @@ public class SyncPrimitive implements Watcher {
 
     synchronized public void process(WatchedEvent event) {
         synchronized (mutex) {
-            //System.out.println("Process: " + event.getType());
+            if (!event.getType().equals(Event.EventType.None)) {
+                System.out.println("Event: " + event.getType() + " Mutex:" + mutex);
+            }
+
             mutex.notify();
         }
     }
@@ -72,11 +75,9 @@ public class SyncPrimitive implements Watcher {
                                   CreateMode.PERSISTENT);
                     }
                 } catch (KeeperException e) {
-                    System.out
-                            .println("Keeper exception when instantiating queue: "
-                                             + e.toString());
+                    log.error("Keeper exception when instantiating queue: "+ e);
                 } catch (InterruptedException e) {
-                    System.out.println("Interrupted exception");
+                    log.error("Interrupted exception: " + e);
                 }
             }
 
@@ -84,20 +85,21 @@ public class SyncPrimitive implements Watcher {
             try {
                 this.name = InetAddress.getLocalHost().getCanonicalHostName();
             } catch (UnknownHostException e) {
-                log.error("e: ", e);
+               log.error(e.toString());
             }
         }
 
         /**
-         * Join barrier
+         * Join barrier. The thread will block here until all size processes join the barrier
          */
         boolean enter() throws KeeperException, InterruptedException{
-            zk.create(root + "/" + name, new byte[0], Ids.OPEN_ACL_UNSAFE,
+            var createdNode = zk.create(root + "/" + name, new byte[0], Ids.OPEN_ACL_UNSAFE,
                       CreateMode.EPHEMERAL_SEQUENTIAL);
+            name = createdNode.split("/")[2];
+            System.out.println("Created: "+createdNode);
             while (true) {
                 synchronized (mutex) {
                     List<String> list = zk.getChildren(root, true);
-
                     if (list.size() < size) {
                         mutex.wait();
                     } else {
@@ -112,10 +114,13 @@ public class SyncPrimitive implements Watcher {
          */
         boolean leave() throws KeeperException, InterruptedException{
             zk.delete(root + "/" + name, 0);
+            System.out.println("Deleted: " + root + "/" + name);
             while (true) {
                 synchronized (mutex) {
                     List<String> list = zk.getChildren(root, true);
-                    if (list.size() > 0) {
+                    System.out.println("Remaining in Barrier: "+ list + "\n");
+
+                    if (!list.isEmpty()) {
                         mutex.wait();
                     } else {
                         return true;
@@ -257,29 +262,31 @@ public class SyncPrimitive implements Watcher {
     public static void barrierTest(String[] args) {
         int size = Integer.parseInt(args[2]);
         Barrier b = new Barrier(args[1], "/b1", size);
+        System.out.println("Mutex Id: " + SyncPrimitive.mutex);
         try{
             boolean flag = b.enter();
-            System.out.println("Entered barrier: " + args[2]);
+            System.out.println("ALL PROCESSES ("+args[2]+") JOINED BARRIER");
             if(!flag) System.out.println("Error when entering the barrier");
         } catch (KeeperException | InterruptedException e){
-            log.error("e: ", e);
+            log.error(e.toString());
         }
 
-        // Generate random integer
+        // SIMULATES SOME WORK
         Random rand = new Random();
-        int r = rand.nextInt(100);
-        // Loop for rand iterations
+        int r = rand.nextInt(150);
+        System.out.println("WORK WILL TAKE " + (100 * r) / 1000+ "s... I WILL STILL RECEIVE EVENTS BETWEEN TASKS\n");
         for (int i = 0; i < r; i++) {
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
-                log.error("e: ", e);
+                log.error(e.toString());
             }
         }
         try{
-            b.leave();
+            var flag = b.leave();
+            if (!flag) System.out.println("Error when leaving the barrier");
         } catch (KeeperException | InterruptedException e){
-            log.error("e: ", e);
+            log.error(e.toString());
         }
         System.out.println("Left barrier");
     }
