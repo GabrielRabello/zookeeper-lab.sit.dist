@@ -137,6 +137,7 @@ public class SyncPrimitive implements Watcher {
         }
 
         public boolean leave() throws KeeperException, InterruptedException {
+            System.out.println(LocalTime.now()+": Waiting to leave the barrier");
             while (true) {
                 synchronized (mutex) {
                     // Step 1: L = getChildren(b, false)
