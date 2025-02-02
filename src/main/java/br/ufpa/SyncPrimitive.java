@@ -109,22 +109,23 @@ public class SyncPrimitive implements Watcher {
     }
 
     public static void main(String[] args) {
-        barrierTest(args);
-    }
-
-    public static void barrierTest(String[] args) {
+        String root = args[0];
         int size = Integer.parseInt(args[1]); // size not actually used in this example
         boolean isStarter = false;
         if (args.length == 3) {
             isStarter = args[2].equalsIgnoreCase("true");
         }
-        var b = new Barrier(args[0], "/b1", size, isStarter);
+        barrierTest(root, size, isStarter);
+    }
+
+    public static void barrierTest(String root, int size, boolean isStarter) {
+        var b = new Barrier(root, "/b1", size, isStarter);
 
         // SIMULATES SOME WORK
         Random rand = new Random();
         int r = rand.nextInt(100);
         if (isStarter) {
-            r = 10;
+            r = 120;
         }
         System.out.println("WORK WILL TAKE " + (100 * r) / 1000+ "s...\n");
         for (int i = 0; i < r; i++) {
@@ -135,10 +136,10 @@ public class SyncPrimitive implements Watcher {
             }
         }
 
+        System.out.println(LocalTime.now()+": WORK DONE");
+
         if (isStarter) {
             b.RemoveBarrier();
         }
-
-        System.out.println(LocalTime.now()+": WORK DONE");
     }
 }
