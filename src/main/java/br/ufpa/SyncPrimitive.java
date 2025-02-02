@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Random;
 
@@ -15,8 +16,6 @@ import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.data.Stat;
-
-import static java.lang.Integer.valueOf;
 
 public class SyncPrimitive implements Watcher {
 
@@ -31,22 +30,26 @@ public class SyncPrimitive implements Watcher {
             try {
                 System.out.println("Starting ZK:");
                 zk = new ZooKeeper(address, 3000, this);
-//                mutex = -1;
                 System.out.println("Finished starting ZK: " + zk);
             } catch (IOException e) {
                 log.error(e.toString());
                 zk = null;
             }
         }
-        //else mutex = new Integer(-1);
     }
 
     synchronized public void process(WatchedEvent event) {
         synchronized (mutex) {
             if (!event.getType().equals(Event.EventType.None)) {
-                System.out.println("Event: " + event.getType() + " Mutex:" + mutex);
+                System.out.println(LocalTime.now()+": Event - " + event.getType() + " Mutex:" + mutex);
             }
-
+            // Delay in notification to cause deadlock
+            var n = new Random().nextInt(20+1);
+            try {
+                Thread.sleep(n*100);
+            } catch (InterruptedException e) {
+                log.error(e.toString());
+            }
             mutex.notify();
         }
     }
@@ -90,7 +93,7 @@ public class SyncPrimitive implements Watcher {
         }
 
         /**
-         * Join barrier. The thread will block here until all size processes join the barrier
+         * Join barrier. The thread will block here until all processes join the barrier
          */
         boolean enter() throws KeeperException, InterruptedException{
             var createdNode = zk.create(root + "/" + name, new byte[0], Ids.OPEN_ACL_UNSAFE,
@@ -98,9 +101,13 @@ public class SyncPrimitive implements Watcher {
             name = createdNode.split("/")[2];
             System.out.println("Created: "+createdNode);
             while (true) {
+                // Key point where current implementation can enter deadlock.
+                // Between the znode creation and getChildren, one of the nodes may already be deleted,
+                // so list.size() will always be less than size.
                 synchronized (mutex) {
                     List<String> list = zk.getChildren(root, true);
                     if (list.size() < size) {
+                        System.out.println(LocalTime.now()+": Waiting to enter the barrier...");
                         mutex.wait();
                     } else {
                         return true;
@@ -115,10 +122,11 @@ public class SyncPrimitive implements Watcher {
         boolean leave() throws KeeperException, InterruptedException{
             zk.delete(root + "/" + name, 0);
             System.out.println("Deleted: " + root + "/" + name);
+            System.out.println(LocalTime.now()+": Waiting to leave the barrier");
             while (true) {
                 synchronized (mutex) {
                     List<String> list = zk.getChildren(root, true);
-                    System.out.println("Remaining in Barrier: "+ list + "\n");
+                    System.out.println(LocalTime.now()+": Remaining in Barrier: "+ list + "\n");
 
                     if (!list.isEmpty()) {
                         mutex.wait();
@@ -273,7 +281,7 @@ public class SyncPrimitive implements Watcher {
 
         // SIMULATES SOME WORK
         Random rand = new Random();
-        int r = rand.nextInt(150);
+        int r = rand.nextInt(20);
         System.out.println("WORK WILL TAKE " + (100 * r) / 1000+ "s... I WILL STILL RECEIVE EVENTS BETWEEN TASKS\n");
         for (int i = 0; i < r; i++) {
             try {
