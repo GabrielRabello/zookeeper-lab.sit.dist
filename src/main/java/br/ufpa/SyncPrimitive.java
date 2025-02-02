@@ -38,7 +38,7 @@ public class SyncPrimitive implements Watcher {
         }
     }
 
-    synchronized public void process(WatchedEvent event) {
+    public void process(WatchedEvent event) {
         synchronized (mutex) {
             if (!event.getType().equals(Event.EventType.None)) {
                 System.out.println(LocalTime.now()+": Event - " + event.getType() + " Mutex:" + mutex);
