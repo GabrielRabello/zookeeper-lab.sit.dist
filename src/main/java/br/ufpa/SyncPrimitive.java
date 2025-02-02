@@ -2,7 +2,6 @@ package br.ufpa;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.nio.ByteBuffer;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Random;
@@ -98,7 +97,8 @@ public class SyncPrimitive implements Watcher {
         boolean enter() throws KeeperException, InterruptedException{
             var createdNode = zk.create(root + "/" + name, new byte[0], Ids.OPEN_ACL_UNSAFE,
                       CreateMode.EPHEMERAL_SEQUENTIAL);
-            name = createdNode.split("/")[2];
+            var split = createdNode.split("/");
+            name = split[split.length-1];
             System.out.println("Created: "+createdNode);
             while (true) {
                 // Key point where current implementation can enter deadlock.
