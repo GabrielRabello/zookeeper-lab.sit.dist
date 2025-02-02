@@ -99,7 +99,7 @@ public class SyncPrimitive implements Watcher {
             }
         }
 
-        public boolean enterDoubleBarrier() throws KeeperException, InterruptedException {
+        public boolean enter() throws KeeperException, InterruptedException {
             // Step 2: Set watch: exists(b + "/ready", true)
             zk.exists(root + "/"+readyNode, true);
 
@@ -186,7 +186,7 @@ public class SyncPrimitive implements Watcher {
     public static void barrierTest(String root, int size) {
         Barrier b = new Barrier(root, "/b1", size);
         try{
-            boolean flag = b.enterDoubleBarrier();
+            boolean flag = b.enter();
             System.out.println("ALL PROCESSES ("+size+") JOINED BARRIER");
             if(!flag) System.out.println("Error when entering the barrier");
         } catch (KeeperException | InterruptedException e){
