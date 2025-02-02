@@ -43,6 +43,14 @@ public class SyncPrimitive implements Watcher {
         }
     }
 
+    public void Close() {
+        try {
+            zk.close();
+        } catch (InterruptedException e) {
+            log.error(e.toString());
+        }
+    }
+
     /**
      * Barrier
      */
@@ -75,20 +83,20 @@ public class SyncPrimitive implements Watcher {
                 return;
             }
 
-            //
+            waitBarrier();
+        }
+
+        /** Wait for barrier znode to be removed (if exists) so the process can make some work */
+        private void waitBarrier() {
             try {
                 while (true) {
                     synchronized (mutex) {
-                        Stat stat = zk.exists(root, true);
-                        if (stat == null) {
-                            // Barrier node does not exist, proceed
+                        if (zk.exists(root, true) == null) {
                             System.out.println(LocalTime.now() + ": No barrier. proceeding...");
                             return;
-                        } else {
-                            // Barrier node exists, wait for the watch event
-                            System.out.println(LocalTime.now() + ": Waiting for barrier node to be removed...");
-                            mutex.wait();
                         }
+                        System.out.println(LocalTime.now() + ": Waiting for barrier node to be removed...");
+                        mutex.wait();
                     }
                 }
             } catch (KeeperException e) {
@@ -125,7 +133,7 @@ public class SyncPrimitive implements Watcher {
         Random rand = new Random();
         int r = rand.nextInt(100);
         if (isStarter) {
-            r = 120;
+            r = 80;
         }
         System.out.println("WORK WILL TAKE " + (100 * r) / 1000+ "s...\n");
         for (int i = 0; i < r; i++) {
@@ -141,5 +149,7 @@ public class SyncPrimitive implements Watcher {
         if (isStarter) {
             b.RemoveBarrier();
         }
+
+        b.Close();
     }
 }
