@@ -53,6 +53,14 @@ public class SyncPrimitive implements Watcher {
         }
     }
 
+    public void close() {
+        try {
+            zk.close();
+        } catch (InterruptedException e) {
+            log.error(e.toString());
+        }
+    }
+
     /**
      * Barrier
      */
@@ -203,5 +211,6 @@ public class SyncPrimitive implements Watcher {
             log.error(e.toString());
         }
         System.out.println("Left barrier");
+        b.close();
     }
 }
