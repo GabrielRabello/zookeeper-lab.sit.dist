@@ -42,7 +42,7 @@ public class SyncPrimitive implements Watcher {
             if (!event.getType().equals(Event.EventType.None)) {
                 System.out.println(LocalTime.now()+": Event - " + event.getType() + " Mutex:" + mutex);
             }
-            // Delay in notification to cause deadlock
+            // Delay in notification to cause deadlock. The higher the delay the higher the chances of deadlock.
             var n = new Random().nextInt(20+1);
             try {
                 Thread.sleep(n*100);
@@ -154,7 +154,8 @@ public class SyncPrimitive implements Watcher {
             log.error(e.toString());
         }
 
-        // SIMULATES SOME WORK
+        // SIMULATES SOME WORK.
+        // THE FASTER THE WORK AND THE LONGER THE NOTIFICATION DELAY, THE HIGHER THE CHANCES OF A DEADLOCK.
         Random rand = new Random();
         int r = rand.nextInt(20);
         System.out.println("WORK WILL TAKE " + (100 * r) / 1000+ "s... I WILL STILL RECEIVE EVENTS BETWEEN TASKS\n");
