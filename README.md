@@ -19,6 +19,7 @@
       * Exemplo ilustrativo:
          * Comando: `/usr/bin/env /path/to/.vscode/extensions/redhat.java-1.39.0-linux-x64/jre/21.0.5-linux-x86_64/bin/java @/tmp/cp_f3chrtah423t64ckmeklrkamt.argfile br.ufpa.SyncPrimitive`
          * Parâmetros: `localhost:2181 3`
+         * Para o processo que irá representar o evento de inicio das execuções: `localhost:2181 3 true`
 
 </br>
 
