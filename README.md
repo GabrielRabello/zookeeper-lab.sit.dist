@@ -18,7 +18,7 @@
       * Verificar o comando que aparecer no terminal, e então adicionar ao final os parâmetros necessários (especificados mais pra frente)
       * Exemplo ilustrativo:
          * Comando: `/usr/bin/env /path/to/.vscode/extensions/redhat.java-1.39.0-linux-x64/jre/21.0.5-linux-x86_64/bin/java @/tmp/cp_f3chrtah423t64ckmeklrkamt.argfile br.ufpa.SyncPrimitive`
-         * Parâmetros: `localhost:2181 3`
+         * Parâmetros: `localhost:2181 3 X`; X = 1 para executar o monitor; X = 0 para entrar na barreira.
 
 </br>
 
