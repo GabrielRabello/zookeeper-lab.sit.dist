@@ -41,7 +41,7 @@ public class SyncPrimitive implements Watcher {
             if (!event.getType().equals(Event.EventType.None)) {
                 System.out.println(LocalTime.now()+": Event - " + event.getType() + " - " + event.getPath());
             }
-            // Delay in notification to cause deadlock. The higher the delay the higher the chances of deadlock.
+            // Delay in notification to try to cause deadlock. The higher the delay the higher the chances of deadlock in bad implementations.
             var n = new Random().nextInt(20+1);
             try {
                 Thread.sleep(n*100);

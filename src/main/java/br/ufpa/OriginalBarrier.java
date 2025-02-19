@@ -101,18 +101,7 @@ public class OriginalBarrier extends SyncPrimitive {
             log.error(e.toString());
         }
 
-        // SIMULATES SOME WORK.
-        // THE FASTER THE WORK AND THE LONGER THE NOTIFICATION DELAY, THE HIGHER THE CHANCES OF A DEADLOCK.
-        Random rand = new Random();
-        int r = rand.nextInt(20);
-        System.out.println("WORK WILL TAKE " + (100 * r) / 1000 + "s... I WILL STILL RECEIVE EVENTS BETWEEN TASKS\n");
-        for (int i = 0; i < r; i++) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                log.error(e.toString());
-            }
-        }
+        Worker.doWork();
 
         try {
             var flag = b.leave();
@@ -121,5 +110,6 @@ public class OriginalBarrier extends SyncPrimitive {
             log.error(e.toString());
         }
         System.out.println("Left barrier");
+        b.close();
     }
 }
