@@ -1,19 +1,13 @@
 package br.ufpa;
 import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.Random;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.apache.zookeeper.CreateMode;
-import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
-import org.apache.zookeeper.ZooDefs.Ids;
 
 // This was based on pseudo-code from: https://zookeeper.apache.org/doc/r3.6.3/recipes.html
 public class SyncPrimitive implements Watcher {
