@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4e489aef-058f-40cf-9d2e-19a33fb37843" name="Changes" comment="rem importações desnecessárias">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/feature/4-restricted-barrier" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/4-restricted-barrier" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;GabrielRabello&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:GabrielRabello/zookeeper-lab.sit.dist.git&quot;,
+    &quot;accountId&quot;: &quot;2565cae5-1bd0-4281-b830-2c921123ac74&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2smMsxk3tY6bZVE0gOA61bJzM9b" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Client1.executor": "Run",
+    "Application.Client2.executor": "Run",
+    "Application.Client3.executor": "Run",
+    "Application.exp4-1.executor": "Run",
+    "Application.exp4-2.executor": "Run",
+    "Application.exp4-3.executor": "Run",
+    "Maven.projeto_zookeeper [clean,install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/gabriel/MEGA/UFPA/2024.4_Lab_Sistemas_Distribuidos/atividades/zookeeper-lab.sit.dist",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.exp1-1">
+    <configuration name="exp1-1" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="br.ufpa.OriginalBarrier" />
+      <module name="projeto_zookeeper" />
+      <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="exp1-2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="br.ufpa.OriginalBarrier" />
+      <module name="projeto_zookeeper" />
+      <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="exp1-3" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="br.ufpa.OriginalBarrier" />
+      <module name="projeto_zookeeper" />
+      <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="exp4-1" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="br.ufpa.RestrictedBarrier" />
+      <module name="projeto_zookeeper" />
+      <option name="PROGRAM_PARAMETERS" value="localhost:2181 3 um" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="exp4-2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="br.ufpa.RestrictedBarrier" />
+      <module name="projeto_zookeeper" />
+      <option name="PROGRAM_PARAMETERS" value="localhost:2181 3 um" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="exp4-3" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="br.ufpa.RestrictedBarrier" />
+      <module name="projeto_zookeeper" />
+      <option name="PROGRAM_PARAMETERS" value="localhost:2181 3 um" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Barreira Inicial" type="CompoundRunConfigurationType">
+      <toRun name="exp1-1" type="Application" />
+      <toRun name="exp1-2" type="Application" />
+      <toRun name="exp1-3" type="Application" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Barreira Restrita" type="CompoundRunConfigurationType">
+      <toRun name="exp4-1" type="Application" />
+      <toRun name="exp4-2" type="Application" />
+      <toRun name="exp4-3" type="Application" />
+      <method v="2" />
+    </configuration>
+    <configuration name="projeto_zookeeper [clean,install]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="install" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Application.exp1-1" />
+      <item itemvalue="Application.exp1-2" />
+      <item itemvalue="Application.exp1-3" />
+      <item itemvalue="Application.exp4-2" />
+      <item itemvalue="Application.exp4-3" />
+      <item itemvalue="Application.exp4-1" />
+      <item itemvalue="Compound.Barreira Inicial" />
+      <item itemvalue="Compound.Barreira Restrita" />
+      <item itemvalue="Maven.projeto_zookeeper [clean,install]" />
+    </list>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.24978.46" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-IU-243.24978.46" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4e489aef-058f-40cf-9d2e-19a33fb37843" name="Changes" comment="" />
+      <created>1739056507074</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1739056507074</updated>
+      <workItem from="1739056508143" duration="1236000" />
+      <workItem from="1739740321025" duration="2220000" />
+      <workItem from="1739745784843" duration="6244000" />
+      <workItem from="1739928329989" duration="4045000" />
+    </task>
+    <task id="LOCAL-00001" summary="add comentários">
+      <option name="closed" value="true" />
+      <created>1739056885188</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1739056885188</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update readme">
+      <option name="closed" value="true" />
+      <created>1739057029405</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1739057029405</updated>
+    </task>
+    <task id="LOCAL-00003" summary="add barreira restrita">
+      <option name="closed" value="true" />
+      <created>1739757561536</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1739757561536</updated>
+    </task>
+    <task id="LOCAL-00004" summary="ajustes main">
+      <option name="closed" value="true" />
+      <created>1739930312452</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1739930312452</updated>
+    </task>
+    <task id="LOCAL-00005" summary="ajustes log e cleanup">
+      <option name="closed" value="true" />
+      <created>1739931883522</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1739931883522</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Separação barreira original">
+      <option name="closed" value="true" />
+      <created>1739932157263</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1739932157263</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Código original ajustado.&#10;Merge com barreira restrita">
+      <option name="closed" value="true" />
+      <created>1739932495708</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1739932495708</updated>
+    </task>
+    <task id="LOCAL-00008" summary="rem importações desnecessárias">
+      <option name="closed" value="true" />
+      <created>1739932538576</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1739932538576</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add comentários" />
+    <MESSAGE value="update readme" />
+    <MESSAGE value="add barreira restrita" />
+    <MESSAGE value="ajustes main" />
+    <MESSAGE value="ajustes log e cleanup" />
+    <MESSAGE value="Separação barreira original" />
+    <MESSAGE value="Código original ajustado.&#10;Merge com barreira restrita" />
+    <MESSAGE value="rem importações desnecessárias" />
+    <option name="LAST_COMMIT_MESSAGE" value="rem importações desnecessárias" />
+  </component>
+</project>
