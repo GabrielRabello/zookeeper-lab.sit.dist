@@ -8,7 +8,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Random;
 
 public class DoubleBarrier extends SyncPrimitive {
     int size;
@@ -136,17 +135,8 @@ public class DoubleBarrier extends SyncPrimitive {
             System.exit(-1);
         }
 
-        // SIMULATES SOME WORK
-        Random rand = new Random();
-        int r = rand.nextInt(20);
-        System.out.println("WORK WILL TAKE " + (100 * r) / 1000 + "s... I WILL STILL RECEIVE EVENTS BETWEEN TASKS\n");
-        for (int i = 0; i < r; i++) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                log.error(e.toString());
-            }
-        }
+        Worker.doWork();
+
         try {
             var flag = b.leave();
             if (!flag) System.out.println("Error when leaving the barrier");

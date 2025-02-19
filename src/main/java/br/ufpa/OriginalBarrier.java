@@ -9,7 +9,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Random;
 
 public class OriginalBarrier extends SyncPrimitive {
     int size;

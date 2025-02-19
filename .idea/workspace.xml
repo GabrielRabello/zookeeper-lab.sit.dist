@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e489aef-058f-40cf-9d2e-19a33fb37843" name="Changes" comment="rem importações desnecessárias">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+    <list default="true" id="4e489aef-058f-40cf-9d2e-19a33fb37843" name="Changes" comment="codigo barreira dupla foi separado">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/ufpa/DoubleBarrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ufpa/DoubleBarrier.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +22,7 @@
     </option>
   </component>
   <component name="Git.Merge.Settings">
-    <option name="BRANCH" value="origin/feature/4-restricted-barrier" />
+    <option name="BRANCH" value="origin/feature/2-double-barrier" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -55,31 +56,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Client1.executor": "Run",
-    "Application.Client2.executor": "Run",
-    "Application.Client3.executor": "Run",
-    "Application.exp4-1.executor": "Run",
-    "Application.exp4-2.executor": "Run",
-    "Application.exp4-3.executor": "Run",
-    "Maven.projeto_zookeeper [clean,install].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/gabriel/MEGA/UFPA/2024.4_Lab_Sistemas_Distribuidos/atividades/zookeeper-lab.sit.dist",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Client1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Client2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Client3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.exp4-1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.exp4-2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.exp4-3.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.projeto_zookeeper [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/gabriel/MEGA/UFPA/2024.4_Lab_Sistemas_Distribuidos/atividades/zookeeper-lab.sit.dist&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.exp1-1">
-    <configuration name="exp1-1" type="Application" factoryName="Application">
+}</component>
+  <component name="RunManager" selected="Application.restricted-1">
+    <configuration name="original&amp;doublebarrier-1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="br.ufpa.OriginalBarrier" />
       <module name="projeto_zookeeper" />
       <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
@@ -87,7 +88,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="exp1-2" type="Application" factoryName="Application">
+    <configuration name="original&amp;doublebarrier-2" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="br.ufpa.OriginalBarrier" />
       <module name="projeto_zookeeper" />
       <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
@@ -95,7 +96,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="exp1-3" type="Application" factoryName="Application">
+    <configuration name="original&amp;doublebarrier-3" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="br.ufpa.OriginalBarrier" />
       <module name="projeto_zookeeper" />
       <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
@@ -103,7 +104,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="exp4-1" type="Application" factoryName="Application">
+    <configuration name="restricted-1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="br.ufpa.RestrictedBarrier" />
       <module name="projeto_zookeeper" />
       <option name="PROGRAM_PARAMETERS" value="localhost:2181 3 um" />
@@ -111,7 +112,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="exp4-2" type="Application" factoryName="Application">
+    <configuration name="restricted-2" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="br.ufpa.RestrictedBarrier" />
       <module name="projeto_zookeeper" />
       <option name="PROGRAM_PARAMETERS" value="localhost:2181 3 um" />
@@ -119,7 +120,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="exp4-3" type="Application" factoryName="Application">
+    <configuration name="restricted-3" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="br.ufpa.RestrictedBarrier" />
       <module name="projeto_zookeeper" />
       <option name="PROGRAM_PARAMETERS" value="localhost:2181 3 um" />
@@ -171,12 +172,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.exp1-1" />
-      <item itemvalue="Application.exp1-2" />
-      <item itemvalue="Application.exp1-3" />
-      <item itemvalue="Application.exp4-2" />
-      <item itemvalue="Application.exp4-3" />
-      <item itemvalue="Application.exp4-1" />
+      <item itemvalue="Application.original&amp;doublebarrier-1" />
+      <item itemvalue="Application.original&amp;doublebarrier-2" />
+      <item itemvalue="Application.original&amp;doublebarrier-3" />
+      <item itemvalue="Application.restricted-2" />
+      <item itemvalue="Application.restricted-3" />
+      <item itemvalue="Application.restricted-1" />
       <item itemvalue="Compound.Barreira Inicial" />
       <item itemvalue="Compound.Barreira Restrita" />
       <item itemvalue="Maven.projeto_zookeeper [clean,install]" />
@@ -282,6 +283,7 @@
     <MESSAGE value="Separação barreira original" />
     <MESSAGE value="Código original ajustado.&#10;Merge com barreira restrita" />
     <MESSAGE value="rem importações desnecessárias" />
-    <option name="LAST_COMMIT_MESSAGE" value="rem importações desnecessárias" />
+    <MESSAGE value="codigo barreira dupla foi separado" />
+    <option name="LAST_COMMIT_MESSAGE" value="codigo barreira dupla foi separado" />
   </component>
 </project>
