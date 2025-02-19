@@ -12,7 +12,6 @@ import java.util.List;
 public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
     int size;
     String name;
-    final String subsetId;
     final String subsetPath;
     final String readyNode;
     String nodePath;
@@ -24,7 +23,6 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
         super(address);
         this.root = root;
         this.size = size;
-        this.subsetId = subsetId;
         this.subsetPath = root + "/" + subsetId;
         this.readyNode = this.subsetPath+ "/ready";
 
@@ -131,5 +129,33 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
                 }
             }
         }
+    }
+
+    public static void main(String[] args) {
+        String root = args[0];
+        int size = Integer.parseInt(args[1]);
+        var subsetId = args[2];
+        final var barrierRoot = "/b1";
+        var barrier = new RestrictedBarrier(root, barrierRoot, subsetId, size);
+
+        try{
+            boolean flag = barrier.enter();
+            System.out.println("ALL PROCESSES ("+size+") JOINED BARRIER");
+            if(!flag) System.out.println("Error when entering the barrier");
+        } catch (KeeperException | InterruptedException e){
+            log.error(e.toString());
+            System.exit(-1);
+        }
+
+        Worker.doWork();
+
+        try{
+            var flag = barrier.leave();
+            if (!flag) System.out.println("Error when leaving the barrier");
+        } catch (KeeperException | InterruptedException e){
+            log.error(e.toString());
+        }
+        System.out.println("Left barrier");
+        barrier.close();
     }
 }

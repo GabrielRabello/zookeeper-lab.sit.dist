@@ -17,7 +17,6 @@ import org.apache.zookeeper.ZooDefs.Ids;
 
 // This was based on pseudo-code from: https://zookeeper.apache.org/doc/r3.6.3/recipes.html
 public class SyncPrimitive implements Watcher {
-
     protected static final Logger log = LoggerFactory.getLogger(SyncPrimitive.class);
     static ZooKeeper zk = null;
     protected static final Object mutex = new Object();
@@ -52,52 +51,5 @@ public class SyncPrimitive implements Watcher {
         } catch (InterruptedException e) {
             log.error(e.toString());
         }
-    }
-
-    public static void main(String[] args) {
-        String root = args[0];
-        int size = Integer.parseInt(args[1]);
-        int barrierType = Integer.parseInt(args[2]);
-        var subsetId = args[3];
-        final var barrierRoot = "/b1";
-        switch (barrierType) {
-            case 2:
-                barrierTest(root, size, new RestrictedBarrier(root, barrierRoot, subsetId, size));
-                break;
-            default:
-                System.out.println("Invalid barrier type");
-                System.exit(-1);
-        }
-    }
-
-    public static void barrierTest(String root, int size, IBarrier b) {
-        try{
-            boolean flag = b.enter();
-            System.out.println("ALL PROCESSES ("+size+") JOINED BARRIER");
-            if(!flag) System.out.println("Error when entering the barrier");
-        } catch (KeeperException | InterruptedException e){
-            log.error(e.toString());
-            System.exit(-1);
-        }
-
-        // SIMULATES SOME WORK
-        Random rand = new Random();
-        int r = rand.nextInt(20);
-        System.out.println("WORK WILL TAKE " + (100 * r) / 1000+ "s... I WILL STILL RECEIVE EVENTS BETWEEN TASKS\n");
-        for (int i = 0; i < r; i++) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException e) {
-                log.error(e.toString());
-            }
-        }
-        try{
-            var flag = b.leave();
-            if (!flag) System.out.println("Error when leaving the barrier");
-        } catch (KeeperException | InterruptedException e){
-            log.error(e.toString());
-        }
-        System.out.println("Left barrier");
-        b.close();
     }
 }
