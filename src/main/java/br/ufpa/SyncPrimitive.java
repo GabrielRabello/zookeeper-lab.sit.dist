@@ -14,10 +14,9 @@ import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
 import org.apache.zookeeper.ZooDefs.Ids;
-import org.apache.zookeeper.data.Stat;
 
+// This was based on pseudo-code from: https://zookeeper.apache.org/doc/r3.6.3/recipes.html
 public class SyncPrimitive implements Watcher {
-
     protected static final Logger log = LoggerFactory.getLogger(SyncPrimitive.class);
     static ZooKeeper zk = null;
     protected static final Object mutex = new Object();
@@ -40,7 +39,7 @@ public class SyncPrimitive implements Watcher {
     public void process(WatchedEvent event) {
         synchronized (mutex) {
             if (!event.getType().equals(Event.EventType.None)) {
-                System.out.println(LocalTime.now()+": Event - " + event.getType() + " Mutex:" + mutex);
+                System.out.println(LocalTime.now()+": Event - " + event.getType() + " - " + event.getPath());
             }
             // Delay in notification to cause deadlock. The higher the delay the higher the chances of deadlock.
             var n = new Random().nextInt(20+1);
@@ -50,6 +49,14 @@ public class SyncPrimitive implements Watcher {
                 log.error(e.toString());
             }
             mutex.notify();
+        }
+    }
+
+    public void close() {
+        try {
+            zk.close();
+        } catch (InterruptedException e) {
+            log.error(e.toString());
         }
     }
 }
