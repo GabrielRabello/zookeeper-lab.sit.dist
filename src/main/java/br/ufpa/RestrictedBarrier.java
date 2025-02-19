@@ -13,7 +13,7 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
     int size;
     String name;
     final String subsetPath;
-    final String readyNode;
+    final String readyNodePath;
     String nodePath;
 
     /**
@@ -24,7 +24,7 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
         this.root = root;
         this.size = size;
         this.subsetPath = root + "/" + subsetId;
-        this.readyNode = this.subsetPath+ "/ready";
+        this.readyNodePath = this.subsetPath+ "/ready";
 
         // Create barrier node
         if (zk != null) {
@@ -55,13 +55,13 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
 
     public boolean enter() throws KeeperException, InterruptedException {
         // Step 2: Set watch: exists(b + "/ready", true)
-        zk.exists(this.readyNode, true);
+        zk.exists(this.readyNodePath, true);
 
         // Step 1 and 3: Create a name and child: create(n, EPHEMERAL) (the generated name is using sequential feature)
         var znode = zk.create(nodePath, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
         System.out.println("Created: "+znode);
         var split = znode.split("/");
-        name = split[split.length-1];
+        this.name = split[split.length-1];
         this.nodePath = subsetPath + "/" + name;
 
         try {
@@ -76,8 +76,8 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
                         mutex.wait();
                     } else {
                         // Step 6: else create(b + "/ready", REGULAR). Last process to join barrier creates the ready node
-                        if (zk.exists(readyNode, true) == null) {
-                            var readyZNode = zk.create(readyNode, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+                        if (zk.exists(readyNodePath, true) == null) {
+                            var readyZNode = zk.create(readyNodePath, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
                             System.out.println("Created: "+readyZNode);
                         }
                         return true;
@@ -108,8 +108,10 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
                 // Step 3: if p is only process node in L, delete(n) and exit
                 if (children.size() == 1) {
                     System.out.println("Deleting barrier node");
-                    zk.delete(nodePath, 0);
-                    zk.delete(readyNode, -1);
+                    zk.delete(nodePath, -1);
+                    zk.delete(readyNodePath, -1);
+                    zk.delete(subsetPath, -1);
+                    zk.delete(root, -1);
                     return true;
                 }
 
@@ -121,7 +123,7 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
                     mutex.wait();
                 } else {
                     // Step 5: else delete(n) if still exists and wait on lowest process node in L
-                    zk.delete(nodePath, 0);
+                    zk.delete(nodePath, -1);
                     System.out.println("Deleted: " + nodePath);
                     String lowestNode = children.getFirst();
                     zk.exists(subsetPath + "/"+lowestNode, true);
