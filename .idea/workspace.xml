@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e489aef-058f-40cf-9d2e-19a33fb37843" name="Changes" comment="ajuste">
+    <list default="true" id="4e489aef-058f-40cf-9d2e-19a33fb37843" name="Changes" comment="add .jar do exerc. 1, 2/3 e 4">
       <change afterPath="$PROJECT_DIR$/log.out" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/barreira_dupla.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/barreira_original.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/barreira_restrita.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/ufpa/DoubleBarrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ufpa/DoubleBarrier.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,36 +58,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Client1.executor": "Run",
-    "Application.Client2.executor": "Run",
-    "Application.Client3.executor": "Run",
-    "Application.DoubleBarrier.executor": "Run",
-    "Application.exp4-1.executor": "Run",
-    "Application.exp4-2.executor": "Run",
-    "Application.exp4-3.executor": "Run",
-    "JAR Application.barreira_dupla.jar.executor": "Run",
-    "Maven.projeto_zookeeper [clean,install].executor": "Run",
-    "Maven.projeto_zookeeper [clean,package...].executor": "Run",
-    "Maven.projeto_zookeeper [clean,package].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/gabriel/MEGA/UFPA/2024.4_Lab_Sistemas_Distribuidos/atividades/zookeeper-lab.sit.dist",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Facets",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Client1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Client2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Client3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DoubleBarrier.executor&quot;: &quot;Run&quot;,
+    &quot;Application.exp4-1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.exp4-2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.exp4-3.executor&quot;: &quot;Run&quot;,
+    &quot;JAR Application.barreira_dupla.jar.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.projeto_zookeeper [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.projeto_zookeeper [clean,package...].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.projeto_zookeeper [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/gabriel/MEGA/UFPA/2024.4_Lab_Sistemas_Distribuidos/atividades/zookeeper-lab.sit.dist&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Maven.projeto_zookeeper [clean,package...]">
     <configuration name="DoubleBarrier" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="br.ufpa.DoubleBarrier" />
@@ -273,7 +270,9 @@
       <workItem from="1739740321025" duration="2220000" />
       <workItem from="1739745784843" duration="6244000" />
       <workItem from="1739928329989" duration="4045000" />
-      <workItem from="1740017454095" duration="2011000" />
+      <workItem from="1740017454095" duration="2379000" />
+      <workItem from="1740348467062" duration="78000" />
+      <workItem from="1740348553060" duration="558000" />
     </task>
     <task id="LOCAL-00001" summary="add comentários">
       <option name="closed" value="true" />
@@ -347,7 +346,23 @@
       <option name="project" value="LOCAL" />
       <updated>1739933383561</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add .jar do exerc. 1, 3 e 4">
+      <option name="closed" value="true" />
+      <created>1740019492875</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1740019492875</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add .jar do exerc. 1, 2/3 e 4">
+      <option name="closed" value="true" />
+      <created>1740019509453</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1740019509453</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,6 +379,8 @@
     <MESSAGE value="rem importações desnecessárias" />
     <MESSAGE value="codigo barreira dupla foi separado" />
     <MESSAGE value="ajuste" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajuste" />
+    <MESSAGE value="add .jar do exerc. 1, 3 e 4" />
+    <MESSAGE value="add .jar do exerc. 1, 2/3 e 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="add .jar do exerc. 1, 2/3 e 4" />
   </component>
 </project>
