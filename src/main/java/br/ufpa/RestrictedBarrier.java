@@ -93,6 +93,8 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
 
     public boolean leave() throws KeeperException, InterruptedException {
         System.out.println(LocalTime.now()+": Waiting to leave the barrier");
+
+        var ok = false;
         while (true) {
             synchronized (mutex) {
                 // Step 1: L = getChildren(b, false)
@@ -102,17 +104,17 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
 
                 // Step 2: if no children, exit
                 if (children.isEmpty()) {
-                    return true;
+                    ok = true;
+                    break;
                 }
 
                 // Step 3: if p is only process node in L, delete(n) and exit
-                if (children.size() == 1) {
-                    System.out.println("Deleting barrier node");
+                if (children.size() == 1 && children.contains(name)) {
+                    System.out.println("Deleting last process node");
                     zk.delete(nodePath, -1);
-                    zk.delete(readyNodePath, -1);
-                    zk.delete(subsetPath, -1);
-                    zk.delete(root, -1);
-                    return true;
+                    System.out.println("Deleted: " + nodePath);
+                    ok = true;
+                    break;
                 }
 
                 // Step 4: if p is the lowest process node in L, wait on highest process node in L
@@ -123,14 +125,22 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
                     mutex.wait();
                 } else {
                     // Step 5: else delete(n) if still exists and wait on lowest process node in L
-                    zk.delete(nodePath, -1);
-                    System.out.println("Deleted: " + nodePath);
+                    if (zk.exists(nodePath, false) != null) {
+                        zk.delete(nodePath, -1);
+                        System.out.println("Deleted: " + nodePath);
+                    }
                     String lowestNode = children.getFirst();
                     zk.exists(subsetPath + "/"+lowestNode, true);
                     mutex.wait();
                 }
             }
         }
+        if (zk.exists(readyNodePath, false) != null) {
+            zk.delete(readyNodePath, -1);
+            System.out.println("Deleted: " + readyNodePath);
+        }
+
+        return ok;
     }
 
     public static void main(String[] args) {
