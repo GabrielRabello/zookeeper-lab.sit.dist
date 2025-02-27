@@ -139,6 +139,12 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
     }
 
     public static void main(String[] args) {
+        System.out.println("### BARREIRA RESTRITA ###");
+        if (args.length < 3) {
+            System.out.println("USO: java -jar barreira_restrita.jar <IP:Porta> <nProcessos> <grupo>");
+            System.exit(-1);
+        }
+
         String root = args[0];
         int size = Integer.parseInt(args[1]);
         var subsetId = args[2];

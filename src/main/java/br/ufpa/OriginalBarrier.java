@@ -89,6 +89,12 @@ public class OriginalBarrier extends SyncPrimitive {
     }
 
     public static void main(String[] args) {
+        System.out.println("### BARREIRA ORIGINAL (ativ. 1) ###");
+        if (args.length < 2) {
+            System.out.println("Uso: java -jar barreira_original <IP:Porta> <nProcessos>");
+            System.exit(-1);
+        }
+
         int size = Integer.parseInt(args[1]);
         var b = new OriginalBarrier(args[0], "/b1", size);
         System.out.println("Mutex Id: " + SyncPrimitive.mutex);

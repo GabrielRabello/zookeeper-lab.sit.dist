@@ -88,7 +88,6 @@ public class NestedRestrictedBarrier extends SyncPrimitive {
                         // Step 6: else create(b + "/ready", REGULAR). Last process to join barrier creates the ready node
                         var readyZNode = zk.create(ready, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
                         System.out.println("Created: "+readyZNode);
-
                         return true;
                     }
                 }
@@ -160,6 +159,12 @@ public class NestedRestrictedBarrier extends SyncPrimitive {
     }
 
     public static void main(String[] args) {
+        System.out.println("### BARREIRA ANINHADA ###");
+        if (args.length < 3) {
+            System.out.println("USO: java -jar barreira_aninhada.jar <IP:Porta> <nProcessos> <grupo>");
+            System.exit(-1);
+        }
+
         String root = args[0];
         int size = Integer.parseInt(args[1]);
         var subsetId = args[2];

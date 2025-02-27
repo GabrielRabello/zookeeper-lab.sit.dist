@@ -123,6 +123,12 @@ public class DoubleBarrier extends SyncPrimitive {
     }
 
     public static void main(String[] args) {
+        System.out.println("### BARREIRA DUPLA ###");
+        if (args.length < 2) {
+            System.out.println("USO: java -jar barreira_dupla.jar <IP:Porta> <nProcessos>");
+            System.exit(-1);
+        }
+
         String root = args[0];
         int size = Integer.parseInt(args[1]);
         var b = new DoubleBarrier(root, "/b1", size);
