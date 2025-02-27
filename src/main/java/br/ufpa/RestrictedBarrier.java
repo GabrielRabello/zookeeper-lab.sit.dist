@@ -76,10 +76,9 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
                         mutex.wait();
                     } else {
                         // Step 6: else create(b + "/ready", REGULAR). Last process to join barrier creates the ready node
-                        if (zk.exists(readyNodePath, false) == null) {
-                            var readyZNode = zk.create(readyNodePath, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-                            System.out.println("Created: "+readyZNode);
-                        }
+                        var readyZNode = zk.create(readyNodePath, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+                        System.out.println("Created: "+readyZNode);
+
                         return true;
                     }
                 }

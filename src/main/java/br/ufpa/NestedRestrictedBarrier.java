@@ -8,7 +8,6 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.LocalTime;
 import java.util.List;
-import java.util.Objects;
 
 public class NestedRestrictedBarrier extends SyncPrimitive {
     int size;
@@ -87,10 +86,9 @@ public class NestedRestrictedBarrier extends SyncPrimitive {
                         mutex.wait();
                     } else {
                         // Step 6: else create(b + "/ready", REGULAR). Last process to join barrier creates the ready node
-                        if (zk.exists(ready, false) == null) {
-                            var readyZNode = zk.create(ready, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-                            System.out.println("Created: "+readyZNode);
-                        }
+                        var readyZNode = zk.create(ready, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+                        System.out.println("Created: "+readyZNode);
+
                         return true;
                     }
                 }
@@ -115,6 +113,7 @@ public class NestedRestrictedBarrier extends SyncPrimitive {
                 List<String> children = zk.getChildren(levelPath, false);
                 System.out.println(LocalTime.now() + ": Remaining in Barrier: " +
                                            barrierLvl + ": "+children + "\n");
+                System.out.println("Children: "+children);
                 children.remove("ready-"+barrierLvl);
 
                 // Step 2: if no children, exit

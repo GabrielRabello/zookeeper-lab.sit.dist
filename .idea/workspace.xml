@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e489aef-058f-40cf-9d2e-19a33fb37843" name="Changes" comment="Ajustes barreira aninhada">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="4e489aef-058f-40cf-9d2e-19a33fb37843" name="Changes" comment="removida checagem por existencia de /ready na criação, para diminuir atraso.">
       <change beforePath="$PROJECT_DIR$/src/main/java/br/ufpa/NestedRestrictedBarrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ufpa/NestedRestrictedBarrier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/ufpa/RestrictedBarrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ufpa/RestrictedBarrier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/barreira_dupla.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/barreira_dupla.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/barreira_original.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/barreira_original.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/barreira_restrita.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/barreira_restrita.jar" afterDir="false" />
@@ -65,6 +63,9 @@
     "Application.Client1.executor": "Run",
     "Application.Client2.executor": "Run",
     "Application.Client3.executor": "Run",
+    "Application.DoubleBarrier-1.executor": "Run",
+    "Application.DoubleBarrier-2.executor": "Run",
+    "Application.DoubleBarrier-3.executor": "Run",
     "Application.DoubleBarrier.executor": "Run",
     "Application.NestedBarrier-1.executor": "Run",
     "Application.NestedBarrier-2.executor": "Run",
@@ -72,6 +73,9 @@
     "Application.exp4-1.executor": "Run",
     "Application.exp4-2.executor": "Run",
     "Application.exp4-3.executor": "Run",
+    "Application.original&doublebarrier-1.executor": "Run",
+    "Application.original&doublebarrier-2.executor": "Run",
+    "Application.original&doublebarrier-3.executor": "Run",
     "Application.restricted-1.executor": "Run",
     "Application.restricted-2.executor": "Run",
     "Application.restricted-3.executor": "Run",
@@ -101,7 +105,31 @@
       <recent name="br.ufpa" />
     </key>
   </component>
-  <component name="RunManager" selected="Compound.Barreira Restrita">
+  <component name="RunManager" selected="Compound.Barreira Aninhada">
+    <configuration name="DoubleBarrier-1" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="br.ufpa.DoubleBarrier" />
+      <module name="projeto_zookeeper" />
+      <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DoubleBarrier-2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="br.ufpa.DoubleBarrier" />
+      <module name="projeto_zookeeper" />
+      <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DoubleBarrier-3" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="br.ufpa.DoubleBarrier" />
+      <module name="projeto_zookeeper" />
+      <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="NestedBarrier-1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="br.ufpa.NestedRestrictedBarrier" />
       <module name="projeto_zookeeper" />
@@ -126,23 +154,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="original-1" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="br.ufpa.OriginalBarrier" />
+      <module name="projeto_zookeeper" />
+      <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="original-2" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="br.ufpa.OriginalBarrier" />
+      <module name="projeto_zookeeper" />
+      <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="original-3" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="br.ufpa.OriginalBarrier" />
+      <module name="projeto_zookeeper" />
+      <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="original&amp;doublebarrier-1" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="br.ufpa.OriginalBarrier" />
-      <module name="projeto_zookeeper" />
-      <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="original&amp;doublebarrier-2" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="br.ufpa.OriginalBarrier" />
-      <module name="projeto_zookeeper" />
-      <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="original&amp;doublebarrier-3" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="br.ufpa.OriginalBarrier" />
       <module name="projeto_zookeeper" />
       <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
@@ -180,10 +216,16 @@
       <toRun name="NestedBarrier-3" type="Application" />
       <method v="2" />
     </configuration>
+    <configuration name="Barreira Dupla" type="CompoundRunConfigurationType">
+      <toRun name="DoubleBarrier-1" type="Application" />
+      <toRun name="DoubleBarrier-2" type="Application" />
+      <toRun name="DoubleBarrier-3" type="Application" />
+      <method v="2" />
+    </configuration>
     <configuration name="Barreira Inicial" type="CompoundRunConfigurationType">
-      <toRun name="original&amp;doublebarrier-1" type="Application" />
-      <toRun name="original&amp;doublebarrier-2" type="Application" />
-      <toRun name="original&amp;doublebarrier-3" type="Application" />
+      <toRun name="original-1" type="Application" />
+      <toRun name="original-2" type="Application" />
+      <toRun name="original-3" type="Application" />
       <method v="2" />
     </configuration>
     <configuration name="Barreira Restrita" type="CompoundRunConfigurationType">
@@ -260,15 +302,19 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.original&amp;doublebarrier-1" />
-      <item itemvalue="Application.original&amp;doublebarrier-2" />
-      <item itemvalue="Application.original&amp;doublebarrier-3" />
+      <item itemvalue="Application.original-1" />
+      <item itemvalue="Application.original-2" />
+      <item itemvalue="Application.original-3" />
+      <item itemvalue="Application.DoubleBarrier-1" />
+      <item itemvalue="Application.DoubleBarrier-2" />
+      <item itemvalue="Application.DoubleBarrier-3" />
       <item itemvalue="Application.restricted-2" />
       <item itemvalue="Application.restricted-3" />
       <item itemvalue="Application.restricted-1" />
       <item itemvalue="Application.NestedBarrier-1" />
       <item itemvalue="Application.NestedBarrier-2" />
       <item itemvalue="Application.NestedBarrier-3" />
+      <item itemvalue="Compound.Barreira Dupla" />
       <item itemvalue="Compound.Barreira Aninhada" />
       <item itemvalue="Compound.Barreira Inicial" />
       <item itemvalue="Compound.Barreira Restrita" />
@@ -306,7 +352,8 @@
       <workItem from="1740348467062" duration="78000" />
       <workItem from="1740348553060" duration="558000" />
       <workItem from="1740532693088" duration="2583000" />
-      <workItem from="1740611088073" duration="6583000" />
+      <workItem from="1740611088073" duration="6772000" />
+      <workItem from="1740618766228" duration="1361000" />
     </task>
     <task id="LOCAL-00001" summary="add comentários">
       <option name="closed" value="true" />
@@ -420,7 +467,31 @@
       <option name="project" value="LOCAL" />
       <updated>1740618205315</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="removida exceção de /ready criado novamente na barreira restrita e restaurado parte do código">
+      <option name="closed" value="true" />
+      <created>1740618587536</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1740618587536</updated>
+    </task>
+    <task id="LOCAL-00016" summary="removida exceção de /ready criado novamente na barreira restrita e restaurado parte do código">
+      <option name="closed" value="true" />
+      <created>1740618602103</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1740618602103</updated>
+    </task>
+    <task id="LOCAL-00017" summary="removida checagem por existencia de /ready na criação, para diminuir atraso.">
+      <option name="closed" value="true" />
+      <created>1740620116530</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1740620116530</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -443,6 +514,8 @@
     <MESSAGE value="fix: correção erro barreira restrita ao deletar nó" />
     <MESSAGE value="feature: implementação rudimentar de barreira aninhada" />
     <MESSAGE value="Ajustes barreira aninhada" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajustes barreira aninhada" />
+    <MESSAGE value="removida exceção de /ready criado novamente na barreira restrita e restaurado parte do código" />
+    <MESSAGE value="removida checagem por existencia de /ready na criação, para diminuir atraso." />
+    <option name="LAST_COMMIT_MESSAGE" value="removida checagem por existencia de /ready na criação, para diminuir atraso." />
   </component>
 </project>
