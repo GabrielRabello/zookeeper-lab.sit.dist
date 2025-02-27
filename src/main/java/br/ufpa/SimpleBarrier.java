@@ -5,7 +5,6 @@ import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooDefs;
 
 import java.time.LocalTime;
-import java.util.Random;
 
 public class SimpleBarrier extends SyncPrimitive {
 
