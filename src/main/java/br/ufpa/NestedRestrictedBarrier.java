@@ -8,6 +8,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Objects;
 
 public class NestedRestrictedBarrier extends SyncPrimitive {
     int size;
@@ -39,6 +40,12 @@ public class NestedRestrictedBarrier extends SyncPrimitive {
                     zk.create(subsetPath, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE,
                               CreateMode.PERSISTENT);
                 }
+                for (String level : barrierLevels) {
+                    if (zk.exists(subsetPath + "/" + level, false) == null) {
+                        zk.create(subsetPath + "/" + level, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE,
+                                  CreateMode.PERSISTENT);
+                    }
+                }
             } catch (KeeperException e) {
                 log.error("Keeper exception when instantiating queue: "+ e);
             } catch (InterruptedException e) {
@@ -52,27 +59,27 @@ public class NestedRestrictedBarrier extends SyncPrimitive {
         } catch (UnknownHostException e) {
             log.error(e.toString());
         }
-        this.nodePath = subsetPath + "/" + name;
     }
 
     public boolean enter(String barrierLvl) throws KeeperException, InterruptedException {
         var ready = this.readyNodePath + barrierLvl;
+        var levelPath = subsetPath + "/" + barrierLvl;
 
         // Step 2: Set watch: exists(b + "/ready", true)
         zk.exists(ready, true);
 
         // Step 1 and 3: Create a name and child: create(n, EPHEMERAL) (the generated name is using sequential feature)
-        var znode = zk.create(nodePath, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
+        var znode = zk.create(levelPath + "/" + name, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.EPHEMERAL_SEQUENTIAL);
         System.out.println("Created: "+znode);
         var split = znode.split("/");
         this.name = split[split.length-1];
-        this.nodePath = subsetPath + "/" + name;
+        this.nodePath = levelPath + "/" + name;
 
         try {
             while (true) {
                 synchronized (mutex) {
                     // Step 4: L = getChildren(b, false)
-                    List<String> children = zk.getChildren(subsetPath, false);
+                    List<String> children = zk.getChildren(levelPath, false);
 
                     // Step 5: if fewer children in L than x, wait for watch event
                     if (children.size() < size) {
@@ -80,7 +87,7 @@ public class NestedRestrictedBarrier extends SyncPrimitive {
                         mutex.wait();
                     } else {
                         // Step 6: else create(b + "/ready", REGULAR). Last process to join barrier creates the ready node
-                        if (zk.exists(ready, true) == null) {
+                        if (zk.exists(ready, false) == null) {
                             var readyZNode = zk.create(ready, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
                             System.out.println("Created: "+readyZNode);
                         }
@@ -89,7 +96,9 @@ public class NestedRestrictedBarrier extends SyncPrimitive {
                 }
             }
         } catch (KeeperException | InterruptedException e) {
-            log.error(e.toString());
+            if (!(e instanceof KeeperException.NodeExistsException)) {
+                log.error(e.toString());
+            }
         }
 
         return false;
@@ -97,30 +106,37 @@ public class NestedRestrictedBarrier extends SyncPrimitive {
 
     public boolean leave(String barrierLvl) throws KeeperException, InterruptedException {
         var ready = this.readyNodePath + barrierLvl;
+        var levelPath = subsetPath + "/" + barrierLvl;
 
         System.out.println(LocalTime.now()+": Waiting to leave the barrier");
-        var ok = false;
         while (true) {
             synchronized (mutex) {
                 // Step 1: L = getChildren(b, false)
-                List<String> children = zk.getChildren(subsetPath, false);
+                List<String> children = zk.getChildren(levelPath, false);
                 System.out.println(LocalTime.now() + ": Remaining in Barrier: " +
                                            barrierLvl + ": "+children + "\n");
                 children.remove("ready-"+barrierLvl);
 
                 // Step 2: if no children, exit
                 if (children.isEmpty()) {
-                    ok = true;
-                    break;
+                    return true;
                 }
 
                 // Step 3: if p is only process node in L, delete(n) and exit
                 if (children.size() == 1 && children.contains(name)) {
                     System.out.println("Deleting barrier node");
-                    zk.delete(nodePath, -1);
+                    zk.delete(nodePath, 0);
                     System.out.println("Deleted: " + nodePath);
-                    zk.delete(ready, -1);
+                    zk.delete(ready, 0);
                     System.out.println("Deleted: " + ready);
+                    zk.delete(levelPath, 0);
+                    System.out.println("Deleted: " + levelPath);
+                    if (barrierLevels.getLast().equals(barrierLvl)) {
+                        zk.delete(subsetPath, 0);
+                        System.out.println("Deleted: " + subsetPath);
+                        zk.delete(root, 0);
+                        System.out.println("Deleted: " + root);
+                    }
                     return true;
                 }
 
@@ -128,22 +144,20 @@ public class NestedRestrictedBarrier extends SyncPrimitive {
                 children.sort(String::compareTo);
                 if (children.getFirst().equals(name)) {
                     String highestNode = children.getLast();
-                    zk.exists(subsetPath+ "/"+ highestNode, true);
+                    zk.exists(levelPath+ "/"+ highestNode, true);
                     mutex.wait();
                 } else {
                     // Step 5: else delete(n) if still exists and wait on lowest process node in L
                     if (zk.exists(nodePath, false) != null) {
-                        zk.delete(nodePath, -1);
+                        zk.delete(nodePath, 0);
                         System.out.println("Deleted: " + nodePath);
                     }
                     String lowestNode = children.getFirst();
-                    zk.exists(subsetPath + "/"+lowestNode, true);
+                    zk.exists(levelPath + "/" +lowestNode, true);
                     mutex.wait();
                 }
             }
         }
-
-        return true;
     }
 
     public static void main(String[] args) {
