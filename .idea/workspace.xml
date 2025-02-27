@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e489aef-058f-40cf-9d2e-19a33fb37843" name="Changes" comment="fix: correção erro barreira restrita ao deletar nó">
+    <list default="true" id="4e489aef-058f-40cf-9d2e-19a33fb37843" name="Changes" comment="Ajustes barreira aninhada">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/ufpa/SyncPrimitive.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ufpa/SyncPrimitive.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/ufpa/NestedRestrictedBarrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ufpa/NestedRestrictedBarrier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/ufpa/RestrictedBarrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ufpa/RestrictedBarrier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/barreira_dupla.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/barreira_dupla.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/barreira_original.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/barreira_original.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/barreira_restrita.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/barreira_restrita.jar" afterDir="false" />
@@ -59,48 +60,48 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Client1.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Client2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Client3.executor&quot;: &quot;Run&quot;,
-    &quot;Application.DoubleBarrier.executor&quot;: &quot;Run&quot;,
-    &quot;Application.NestedBarrier-1.executor&quot;: &quot;Run&quot;,
-    &quot;Application.NestedBarrier-2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.NestedBarrier-3.executor&quot;: &quot;Run&quot;,
-    &quot;Application.exp4-1.executor&quot;: &quot;Run&quot;,
-    &quot;Application.exp4-2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.exp4-3.executor&quot;: &quot;Run&quot;,
-    &quot;Application.restricted-1.executor&quot;: &quot;Run&quot;,
-    &quot;Application.restricted-2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.restricted-3.executor&quot;: &quot;Run&quot;,
-    &quot;JAR Application.barreira_dupla.jar.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.projeto_zookeeper [clean,install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.projeto_zookeeper [clean,package...].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.projeto_zookeeper [clean,package].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/gabriel/MEGA/UFPA/2024.4_Lab_Sistemas_Distribuidos/atividades/zookeeper-lab.sit.dist&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Client1.executor": "Run",
+    "Application.Client2.executor": "Run",
+    "Application.Client3.executor": "Run",
+    "Application.DoubleBarrier.executor": "Run",
+    "Application.NestedBarrier-1.executor": "Run",
+    "Application.NestedBarrier-2.executor": "Run",
+    "Application.NestedBarrier-3.executor": "Run",
+    "Application.exp4-1.executor": "Run",
+    "Application.exp4-2.executor": "Run",
+    "Application.exp4-3.executor": "Run",
+    "Application.restricted-1.executor": "Run",
+    "Application.restricted-2.executor": "Run",
+    "Application.restricted-3.executor": "Run",
+    "JAR Application.barreira_dupla.jar.executor": "Run",
+    "Maven.projeto_zookeeper [clean,install].executor": "Run",
+    "Maven.projeto_zookeeper [clean,package...].executor": "Run",
+    "Maven.projeto_zookeeper [clean,package].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/gabriel/MEGA/UFPA/2024.4_Lab_Sistemas_Distribuidos/atividades/zookeeper-lab.sit.dist",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="br.ufpa" />
     </key>
   </component>
-  <component name="RunManager" selected="Compound.Barreira Aninhada">
+  <component name="RunManager" selected="Compound.Barreira Restrita">
     <configuration name="NestedBarrier-1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="br.ufpa.NestedRestrictedBarrier" />
       <module name="projeto_zookeeper" />
@@ -304,7 +305,8 @@
       <workItem from="1740017454095" duration="2379000" />
       <workItem from="1740348467062" duration="78000" />
       <workItem from="1740348553060" duration="558000" />
-      <workItem from="1740532693088" duration="2480000" />
+      <workItem from="1740532693088" duration="2583000" />
+      <workItem from="1740611088073" duration="6583000" />
     </task>
     <task id="LOCAL-00001" summary="add comentários">
       <option name="closed" value="true" />
@@ -402,7 +404,23 @@
       <option name="project" value="LOCAL" />
       <updated>1740533401344</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="feature: implementação rudimentar de barreira aninhada">
+      <option name="closed" value="true" />
+      <created>1740535235255</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1740535235255</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Ajustes barreira aninhada">
+      <option name="closed" value="true" />
+      <created>1740618205315</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1740618205315</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,6 +441,8 @@
     <MESSAGE value="add .jar do exerc. 1, 2/3 e 4" />
     <MESSAGE value="update config" />
     <MESSAGE value="fix: correção erro barreira restrita ao deletar nó" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: correção erro barreira restrita ao deletar nó" />
+    <MESSAGE value="feature: implementação rudimentar de barreira aninhada" />
+    <MESSAGE value="Ajustes barreira aninhada" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajustes barreira aninhada" />
   </component>
 </project>
