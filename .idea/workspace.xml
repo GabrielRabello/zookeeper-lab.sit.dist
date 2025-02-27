@@ -4,16 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e489aef-058f-40cf-9d2e-19a33fb37843" name="Changes" comment="">
+    <list default="true" id="4e489aef-058f-40cf-9d2e-19a33fb37843" name="Changes" comment="removido import n usado">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/ufpa/DoubleBarrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ufpa/DoubleBarrier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/ufpa/NestedRestrictedBarrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ufpa/NestedRestrictedBarrier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/ufpa/OriginalBarrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ufpa/OriginalBarrier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/ufpa/RestrictedBarrier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ufpa/RestrictedBarrier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/barreira_dupla.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/barreira_dupla.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/barreira_original.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/barreira_original.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/barreira_restrita.jar" beforeDir="false" afterPath="$PROJECT_DIR$/target/barreira_restrita.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,54 +56,54 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Client1.executor": "Run",
-    "Application.Client2.executor": "Run",
-    "Application.Client3.executor": "Run",
-    "Application.DoubleBarrier-1.executor": "Run",
-    "Application.DoubleBarrier-2.executor": "Run",
-    "Application.DoubleBarrier-3.executor": "Run",
-    "Application.DoubleBarrier.executor": "Run",
-    "Application.NestedBarrier-1.executor": "Run",
-    "Application.NestedBarrier-2.executor": "Run",
-    "Application.NestedBarrier-3.executor": "Run",
-    "Application.exp4-1.executor": "Run",
-    "Application.exp4-2.executor": "Run",
-    "Application.exp4-3.executor": "Run",
-    "Application.original&doublebarrier-1.executor": "Run",
-    "Application.original&doublebarrier-2.executor": "Run",
-    "Application.original&doublebarrier-3.executor": "Run",
-    "Application.restricted-1.executor": "Run",
-    "Application.restricted-2.executor": "Run",
-    "Application.restricted-3.executor": "Run",
-    "JAR Application.barreira_dupla.jar.executor": "Run",
-    "Maven.projeto_zookeeper [clean,install].executor": "Run",
-    "Maven.projeto_zookeeper [clean,package...].executor": "Run",
-    "Maven.projeto_zookeeper [clean,package].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/gabriel/MEGA/UFPA/2024.4_Lab_Sistemas_Distribuidos/atividades/zookeeper-lab.sit.dist",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Client1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Client2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Client3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DoubleBarrier-1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DoubleBarrier-2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DoubleBarrier-3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DoubleBarrier.executor&quot;: &quot;Run&quot;,
+    &quot;Application.NestedBarrier-1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.NestedBarrier-2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.NestedBarrier-3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.exp4-1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.exp4-2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.exp4-3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.original&amp;doublebarrier-1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.original&amp;doublebarrier-2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.original&amp;doublebarrier-3.executor&quot;: &quot;Run&quot;,
+    &quot;Application.restricted-1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.restricted-2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.restricted-3.executor&quot;: &quot;Run&quot;,
+    &quot;JAR Application.barreira_dupla.jar.executor&quot;: &quot;Run&quot;,
+    &quot;Maven.projeto_zookeeper [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.projeto_zookeeper [clean,package...].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.projeto_zookeeper [clean,package].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/gabriel/MEGA/UFPA/2024.4_Lab_Sistemas_Distribuidos/atividades/zookeeper-lab.sit.dist&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="br.ufpa" />
     </key>
   </component>
-  <component name="RunManager" selected="Maven.projeto_zookeeper [clean,package...]">
+  <component name="RunManager" selected="Application.DoubleBarrier-1">
     <configuration name="DoubleBarrier-1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="br.ufpa.DoubleBarrier" />
       <module name="projeto_zookeeper" />
@@ -176,14 +169,6 @@
       </method>
     </configuration>
     <configuration name="original-3" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="br.ufpa.OriginalBarrier" />
-      <module name="projeto_zookeeper" />
-      <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="original&amp;doublebarrier-1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="br.ufpa.OriginalBarrier" />
       <module name="projeto_zookeeper" />
       <option name="PROGRAM_PARAMETERS" value="localhost:2181 3" />
@@ -307,7 +292,6 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Application.original&amp;doublebarrier-1" />
       <item itemvalue="Application.original-1" />
       <item itemvalue="Application.original-2" />
       <item itemvalue="Application.original-3" />
@@ -360,6 +344,7 @@
       <workItem from="1740532693088" duration="2583000" />
       <workItem from="1740611088073" duration="6772000" />
       <workItem from="1740618766228" duration="1361000" />
+      <workItem from="1740671726387" duration="879000" />
     </task>
     <task id="LOCAL-00001" summary="add comentários">
       <option name="closed" value="true" />
@@ -497,7 +482,31 @@
       <option name="project" value="LOCAL" />
       <updated>1740620116530</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Código da barreira simples movida e adaptada para branch principal">
+      <option name="closed" value="true" />
+      <created>1740669898009</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1740669898009</updated>
+    </task>
+    <task id="LOCAL-00019" summary="adicionado os últimos .jar dos executáveis">
+      <option name="closed" value="true" />
+      <created>1740670099193</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1740670099193</updated>
+    </task>
+    <task id="LOCAL-00020" summary="removido import n usado">
+      <option name="closed" value="true" />
+      <created>1740670123810</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1740670123810</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -522,6 +531,10 @@
     <MESSAGE value="Ajustes barreira aninhada" />
     <MESSAGE value="removida exceção de /ready criado novamente na barreira restrita e restaurado parte do código" />
     <MESSAGE value="removida checagem por existencia de /ready na criação, para diminuir atraso." />
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="validação de inputs nas mains.&#10;add geração de .jar da barreira restrita e aninhada" />
+    <MESSAGE value="Código da barreira simples movida e adaptada para branch principal" />
+    <MESSAGE value="adicionado os últimos .jar dos executáveis" />
+    <MESSAGE value="removido import n usado" />
+    <option name="LAST_COMMIT_MESSAGE" value="removido import n usado" />
   </component>
 </project>
