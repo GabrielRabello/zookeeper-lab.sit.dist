@@ -76,7 +76,7 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
                         mutex.wait();
                     } else {
                         // Step 6: else create(b + "/ready", REGULAR). Last process to join barrier creates the ready node
-                        if (zk.exists(readyNodePath, true) == null) {
+                        if (zk.exists(readyNodePath, false) == null) {
                             var readyZNode = zk.create(readyNodePath, new byte[0], ZooDefs.Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
                             System.out.println("Created: "+readyZNode);
                         }
@@ -85,7 +85,9 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
                 }
             }
         } catch (KeeperException | InterruptedException e) {
-            log.error(e.toString());
+            if (!(e instanceof KeeperException.NodeExistsException)) {
+                log.error(e.toString());
+            }
         }
 
         return false;
@@ -93,8 +95,6 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
 
     public boolean leave() throws KeeperException, InterruptedException {
         System.out.println(LocalTime.now()+": Waiting to leave the barrier");
-
-        var ok = false;
         while (true) {
             synchronized (mutex) {
                 // Step 1: L = getChildren(b, false)
@@ -104,17 +104,21 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
 
                 // Step 2: if no children, exit
                 if (children.isEmpty()) {
-                    ok = true;
-                    break;
+                    return true;
                 }
 
                 // Step 3: if p is only process node in L, delete(n) and exit
-                if (children.size() == 1 && children.contains(name)) {
-                    System.out.println("Deleting last process node");
+                if (children.size() == 1) {
+                    System.out.println("Last process remaining...");
                     zk.delete(nodePath, -1);
                     System.out.println("Deleted: " + nodePath);
-                    ok = true;
-                    break;
+                    zk.delete(readyNodePath, -1);
+                    System.out.println("Deleted: " + readyNodePath);
+                    zk.delete(subsetPath, -1);
+                    System.out.println("Deleted: " + subsetPath);
+                    zk.delete(root, -1);
+                    System.out.println("Deleted: " + root);
+                    return true;
                 }
 
                 // Step 4: if p is the lowest process node in L, wait on highest process node in L
@@ -125,22 +129,14 @@ public class RestrictedBarrier extends SyncPrimitive implements IBarrier {
                     mutex.wait();
                 } else {
                     // Step 5: else delete(n) if still exists and wait on lowest process node in L
-                    if (zk.exists(nodePath, false) != null) {
-                        zk.delete(nodePath, -1);
-                        System.out.println("Deleted: " + nodePath);
-                    }
+                    zk.delete(nodePath, -1);
+                    System.out.println("Deleted: " + nodePath);
                     String lowestNode = children.getFirst();
                     zk.exists(subsetPath + "/"+lowestNode, true);
                     mutex.wait();
                 }
             }
         }
-        if (zk.exists(readyNodePath, false) != null) {
-            zk.delete(readyNodePath, -1);
-            System.out.println("Deleted: " + readyNodePath);
-        }
-
-        return ok;
     }
 
     public static void main(String[] args) {

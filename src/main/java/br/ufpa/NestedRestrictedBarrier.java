@@ -124,7 +124,7 @@ public class NestedRestrictedBarrier extends SyncPrimitive {
 
                 // Step 3: if p is only process node in L, delete(n) and exit
                 if (children.size() == 1 && children.contains(name)) {
-                    System.out.println("Deleting barrier node");
+                    System.out.println("Last process remaining...");
                     zk.delete(nodePath, 0);
                     System.out.println("Deleted: " + nodePath);
                     zk.delete(ready, 0);
